@@ -3,62 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MASKED SMP | VORTEX CONTROL</title>
-    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=JetBrains+Mono:wght@400;700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
+    <title>MASKED SMP | SYSTEM HUB</title>
+    <link href="https://fonts.googleapis.com/css2?family=Black+Ops+One&family=JetBrains+Mono:wght@700&family=Inter:wght@400;900&display=swap" rel="stylesheet">
     <style>
-        :root {
-            --neon-green: #39ff14;
-            --alert-red: #ff3e3e;
-            --dark-bg: #000000;
-            --card-bg: #0a0a0a;
-            --input-bg: #e8f0fe;
-            --text: #ffffff;
-        }
-
-        * { box-sizing: border-box; scroll-behavior: smooth; }
-        body { background-color: var(--dark-bg); color: var(--text); font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
-
+        :root { --neon: #39ff14; --alert: #ff3e3e; --bg: #000; --card: #0a0a0a; }
+        * { box-sizing: border-box; }
+        body { background: var(--bg); color: #fff; font-family: 'Inter', sans-serif; margin: 0; overflow-x: hidden; }
+        
         /* --- NAVIGATION --- */
-        nav {
-            position: fixed; top: 0; width: 100%;
-            background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--neon-green);
-            padding: 20px; display: flex; justify-content: center; gap: 25px; z-index: 1000;
-        }
-        nav a { color: #666; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 0.75rem; letter-spacing: 2px; cursor: pointer; transition: 0.3s; }
-        nav a:hover, nav a.active { color: var(--neon-green); text-shadow: 0 0 10px var(--neon-green); }
+        nav { position: fixed; top: 0; width: 100%; background: rgba(0,0,0,0.95); border-bottom: 2px solid var(--neon); padding: 15px; display: flex; justify-content: center; gap: 20px; z-index: 1000; }
+        nav a { color: #555; text-decoration: none; font-weight: 900; text-transform: uppercase; font-size: 0.7rem; cursor: pointer; transition: 0.3s; }
+        nav a:hover, nav a.active { color: var(--neon); text-shadow: 0 0 10px var(--neon); }
 
-        .page { display: none; padding-top: 100px; min-height: 100vh; animation: fadeIn 0.5s ease-out; }
+        .page { display: none; padding-top: 100px; min-height: 100vh; text-align: center; animation: fadeIn 0.4s; }
         .page.active { display: block; }
-
-        /* --- HERO --- */
-        .hero { text-align: center; padding: 40px 20px; }
-        .king-logo {
-            width: 200px; height: 200px; border-radius: 50%;
-            border: 5px solid var(--neon-green); box-shadow: 0 0 50px rgba(57, 255, 20, 0.4);
-            margin-bottom: 20px; object-fit: cover; animation: pulse 3s infinite;
-        }
-
-        /* --- CARDS & GRIDS --- */
+        
         .container { max-width: 1000px; margin: 0 auto; padding: 20px; }
-        .card { background: var(--card-bg); border: 1px solid #1a1a1a; padding: 30px; border-radius: 20px; margin-bottom: 30px; text-align: center; }
-        .user-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 20px; margin-top: 20px; }
-        .user-card { background: #111; padding: 25px; border-radius: 15px; border: 1px solid #222; transition: 0.3s; position: relative; }
-        .user-card:hover { border-color: var(--neon-green); transform: translateY(-5px); }
-        .user-card a { text-decoration: none; font-size: 1.5rem; font-weight: 900; display: block; }
+        .card { background: var(--card); border: 1px solid #1a1a1a; padding: 30px; border-radius: 20px; margin-bottom: 25px; }
+        .king-logo { width: 180px; height: 180px; border-radius: 50%; border: 4px solid var(--neon); margin-bottom: 15px; box-shadow: 0 0 30px rgba(57, 255, 20, 0.3); }
+        
+        /* --- GRID --- */
+        .user-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; margin-top: 20px; }
+        .user-card { background: #0d0d0d; padding: 20px; border-radius: 12px; border: 1px solid #222; transition: 0.3s; }
+        .user-card:hover { border-color: var(--neon); transform: translateY(-3px); }
+        .user-card a { text-decoration: none; font-size: 1.3rem; font-weight: 900; display: block; }
 
-        /* --- TIMER --- */
-        #timer { font-family: 'JetBrains Mono'; font-size: 3rem; color: var(--neon-green); margin: 20px 0; font-weight: bold; }
+        #timer { font-family: 'JetBrains Mono'; font-size: 3.5rem; color: var(--neon); margin: 15px 0; font-weight: 900; }
+        
+        /* --- ADMIN --- */
+        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: none; background: #e8f0fe; color: #000; font-weight: bold; }
+        .btn { width: 100%; padding: 15px; background: var(--neon); color: #000; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; }
+        .del-btn { background: var(--alert); color: white; border: none; padding: 5px 10px; border-radius: 5px; margin-top: 10px; cursor: pointer; font-size: 0.6rem; }
 
-        /* --- FORMS --- */
-        input, select { width: 100%; padding: 12px; margin: 8px 0; border-radius: 8px; border: none; background: var(--input-bg); font-weight: bold; color: #000; }
-        .btn { width: 100%; padding: 15px; background: var(--neon-green); color: black; border: none; border-radius: 8px; font-weight: 900; cursor: pointer; text-transform: uppercase; margin-top: 10px; }
-        .delete-btn { background: var(--alert-red); color: white; padding: 5px 10px; border-radius: 5px; cursor: pointer; border: none; margin-top: 15px; font-size: 0.7rem; font-weight: bold; }
-
-        .gallery { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 15px; }
-        .gallery img { width: 100%; border-radius: 10px; border: 1px solid var(--neon-green); }
-
+        .sync-icon { font-size: 0.6rem; color: var(--neon); vertical-align: middle; animation: spin 2s linear infinite; display: inline-block; margin-right: 5px; }
+        @keyframes spin { 100% { transform: rotate(360deg); } }
         @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     </style>
 </head>
 <body>
@@ -72,218 +51,173 @@
     </nav>
 
     <section id="home" class="page active">
-        <div class="hero">
+        <div class="container">
             <img src="25383CA6-689D-401E-A674-E956D0BCE482.jpg" class="king-logo">
-            <h1 style="font-family:'Black Ops One'; font-size: 3.5rem; margin: 0;">MASKED SMP</h1>
-            <p style="color:var(--neon-green); letter-spacing:3px; font-weight:bold;">PROTOCOL: VORTEX ACCESS</p>
+            <h1 style="font-family:'Black Ops One'; font-size: 4rem; margin:0;">MASKED SMP</h1>
+            <p style="letter-spacing: 3px; font-weight: 900;"><span class="sync-icon">⚙</span> SYSTEM AUTO-SYNC ACTIVE</p>
         </div>
     </section>
 
     <section id="events" class="page">
         <div class="container">
             <div class="card">
-                <h2 style="font-family:'Black Ops One';">SYSTEM COUNTDOWN</h2>
+                <h2 style="font-family:'Black Ops One';">EVENT COUNTDOWN</h2>
                 <div id="timer">00d 00h 00m 00s</div>
-                <h3 id="event-desc" style="color: #666; text-transform: uppercase;">Awaiting Synchronization...</h3>
+                <h3 id="event-desc" style="color: #666; text-transform: uppercase;">Awaiting Update...</h3>
             </div>
         </div>
     </section>
 
     <section id="staff" class="page">
         <div class="container">
-            <h2 style="text-align:center; font-family:'Black Ops One';">THE COUNCIL</h2>
+            <h2 style="font-family:'Black Ops One';">THE COUNCIL</h2>
             <div id="staff-list" class="user-grid"></div>
         </div>
     </section>
 
     <section id="members" class="page">
         <div class="container">
-            <h2 style="text-align:center; font-family:'Black Ops One';">CITIZENS</h2>
+            <h2 style="font-family:'Black Ops One';">CITIZENS</h2>
             <div id="member-list" class="user-grid"></div>
         </div>
     </section>
 
     <section id="admin" class="page">
         <div class="container">
-            <div id="login-section" class="card">
-                <h2 id="gate-title" style="font-family:'Black Ops One';">ADMIN LOGIN</h2>
-                <div style="max-width: 350px; margin: 0 auto;">
-                    <input type="text" id="userInp" placeholder="USERNAME">
-                    <input type="password" id="passInp" placeholder="PASSWORD">
-                    <button class="btn" onclick="handleAuth()">Authenticate</button>
-                    <p id="error-text" style="color: var(--alert-red); display:none; margin-top:10px; font-weight:bold;">ACCESS DENIED</p>
-                </div>
+            <div id="login-ui" class="card" style="max-width:400px; margin: 0 auto;">
+                <h2 id="gate-label">ADMIN ACCESS</h2>
+                <input type="text" id="u" placeholder="USERNAME">
+                <input type="password" id="p" placeholder="PASSWORD">
+                <button class="btn" onclick="auth()">UNLOCK</button>
             </div>
 
-            <div id="dashboard" style="display:none;">
+            <div id="dash-ui" style="display:none;">
                 <div class="card">
-                    <h2 style="color:var(--neon-green); font-family:'Black Ops One';">SYSTEM DASHBOARD</h2>
-                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; text-align: left;">
-                        <div style="background: #111; padding: 20px; border-radius: 15px;">
-                            <h3>Personnel Management</h3>
-                            <input type="text" id="newName" placeholder="Display Name">
-                            <input type="text" id="newYT" placeholder="YouTube Link (Full URL)">
-                            <input type="text" id="newRole" placeholder="Role (e.g. Founder)">
-                            <input type="color" id="newColor" value="#39ff14" style="height:40px; cursor:pointer;">
-                            <select id="newType">
-                                <option value="staff">Staff List</option>
-                                <option value="member">Member List</option>
-                            </select>
-                            <button class="btn" onclick="addUser()">Deploy to Site</button>
+                    <h2 style="color:var(--neon)">CONTROL PANEL</h2>
+                    <div style="display:grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 20px; text-align: left;">
+                        <div>
+                            <h3>Add Personnel</h3>
+                            <input type="text" id="n" placeholder="Name">
+                            <input type="text" id="y" placeholder="YouTube Link">
+                            <input type="text" id="r" placeholder="Role">
+                            <input type="color" id="c" value="#39ff14" style="height:40px;">
+                            <select id="t"><option value="staff">Staff</option><option value="member">Member</option></select>
+                            <button class="btn" onclick="saveUser()">UPDATE ALL SCREENS</button>
                         </div>
-                        <div style="background: #111; padding: 20px; border-radius: 15px;">
-                            <h3>Event Control</h3>
-                            <input type="datetime-local" id="eventDate">
-                            <input type="text" id="eventText" placeholder="Event Description">
-                            <button class="btn" onclick="updateEvent()">Sync Timer</button>
+                        <div>
+                            <h3>Event Update</h3>
+                            <input type="datetime-local" id="ed">
+                            <input type="text" id="et" placeholder="Event Name">
+                            <button class="btn" onclick="saveEvent()">SYNC LIVE TIMER</button>
+                            <button class="del-btn" style="width:100%; height:40px;" onclick="wipeData()">WIPE ALL SITE DATA</button>
                         </div>
                     </div>
-                </div>
-                
-                <div class="card">
-                    <h3>Gallery Vault</h3>
-                    <input type="file" id="imgUp" accept="image/*" multiple>
-                    <div id="admin-gallery" class="gallery" style="margin-top:20px;"></div>
-                    <button class="delete-btn" style="width:100%" onclick="clearGallery()">WIPE GALLERY</button>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        let currentGate = 1;
-        let eventEnd = localStorage.getItem('eventEnd') || null;
-        let eventName = localStorage.getItem('eventName') || "Incoming Event";
+        // --- 1. THE AUTO-UPDATE ENGINE ---
+        // This checks for new data every 3 seconds
+        function startSync() {
+            loadAllData();
+            setInterval(loadAllData, 3000); 
+        }
 
-        // INIT
-        window.onload = () => {
-            loadUsers();
-            loadGallery();
-            if(eventEnd) document.getElementById('event-desc').innerText = eventName;
-        };
+        // --- 2. DATA HANDLERS ---
+        function saveUser() {
+            const user = {
+                name: document.getElementById('n').value,
+                yt: document.getElementById('y').value || "#",
+                role: document.getElementById('r').value,
+                color: document.getElementById('c').value,
+                type: document.getElementById('t').value,
+                id: Date.now()
+            };
+            if(!user.name) return;
+
+            let users = JSON.parse(localStorage.getItem('smp_users') || "[]");
+            users.push(user);
+            localStorage.setItem('smp_users', JSON.stringify(users));
+            alert("Sent to all screens!");
+            loadAllData();
+        }
+
+        function saveEvent() {
+            const eventData = {
+                end: new Date(document.getElementById('ed').value).getTime(),
+                text: document.getElementById('et').value
+            };
+            localStorage.setItem('smp_event', JSON.stringify(eventData));
+            alert("Timer Updated!");
+            loadAllData();
+        }
+
+        function loadAllData() {
+            // Load Users
+            const users = JSON.parse(localStorage.getItem('smp_users') || "[]");
+            document.getElementById('staff-list').innerHTML = "";
+            document.getElementById('member-list').innerHTML = "";
+            users.forEach(u => {
+                const div = document.createElement('div');
+                div.className = 'user-card';
+                div.innerHTML = `
+                    <a href="${u.yt}" target="_blank" style="color:${u.color}">${u.name}</a>
+                    <p style="font-size:0.8rem; color:#444; margin-top:5px; font-weight:900;">${u.role}</p>
+                `;
+                document.getElementById(u.type + '-list').appendChild(div);
+            });
+
+            // Load Event
+            const ev = JSON.parse(localStorage.getItem('smp_event'));
+            if(ev) {
+                targetDate = ev.end;
+                document.getElementById('event-desc').innerText = ev.text;
+                document.getElementById('event-desc').style.color = "white";
+            }
+        }
+
+        function wipeData() {
+            if(confirm("Permanently wipe everything?")) {
+                localStorage.clear();
+                location.reload();
+            }
+        }
+
+        // --- 3. CORE LOGIC ---
+        let targetDate = null;
+        let gate = 1;
+
+        function auth() {
+            const user = document.getElementById('u').value;
+            const pass = document.getElementById('p').value;
+            if(gate === 1 && user === "RoyalAilen" && pass === "Royal13!") {
+                gate = 2; document.getElementById('gate-label').innerText = "VORTEX VERIFY";
+                document.getElementById('u').value = ""; document.getElementById('p').value = "";
+            } else if(gate === 2 && user === "VORTEX" && pass === "VOR13!!") {
+                document.getElementById('login-ui').style.display = "none";
+                document.getElementById('dash-ui').style.display = "block";
+            }
+        }
+
+        setInterval(() => {
+            if(!targetDate) return;
+            const d = targetDate - Date.now();
+            if(d < 0) { document.getElementById('timer').innerText = "LIVE NOW"; return; }
+            const days = Math.floor(d / 86400000);
+            const hours = Math.floor((d % 86400000) / 3600000);
+            const mins = Math.floor((d % 3600000) / 60000);
+            const secs = Math.floor((d % 60000) / 1000);
+            document.getElementById('timer').innerText = `${days}d ${hours}h ${mins}m ${secs}s`;
+        }, 1000);
 
         function showPage(id) {
             document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
             document.getElementById(id).classList.add('active');
         }
 
-        // LOGIN SYSTEM
-        function handleAuth() {
-            const u = document.getElementById('userInp').value;
-            const p = document.getElementById('passInp').value;
-            const err = document.getElementById('error-text');
-
-            if (currentGate === 1) {
-                if (u === "RoyalAilen" && p === "Royal13!") {
-                    currentGate = 2;
-                    document.getElementById('gate-title').innerText = "VORTEX VERIFICATION";
-                    document.getElementById('userInp').value = ""; 
-                    document.getElementById('passInp').value = "";
-                    err.style.display = "none";
-                } else { err.style.display = "block"; }
-            } else if (currentGate === 2) {
-                if (u === "VORTEX" && p === "VOR13!!") {
-                    document.getElementById('login-section').style.display = "none";
-                    document.getElementById('dashboard').style.display = "block";
-                } else { err.style.display = "block"; }
-            }
-        }
-
-        // USER MANAGEMENT
-        function addUser() {
-            const name = document.getElementById('newName').value;
-            const yt = document.getElementById('newYT').value || "#";
-            const role = document.getElementById('newRole').value;
-            const color = document.getElementById('newColor').value;
-            const type = document.getElementById('newType').value;
-            if(!name) return;
-
-            const userData = { name, yt, role, color, type, id: Date.now() };
-            let users = JSON.parse(localStorage.getItem('users') || "[]");
-            users.push(userData);
-            localStorage.setItem('users', JSON.stringify(users));
-            
-            renderUser(userData);
-            document.getElementById('newName').value = "";
-            document.getElementById('newYT').value = "";
-        }
-
-        function renderUser(u) {
-            const div = document.createElement('div');
-            div.className = 'user-card';
-            div.id = `user-${u.id}`;
-            div.innerHTML = `
-                <a href="${u.yt}" target="_blank" style="color:${u.color}">${u.name}</a>
-                <p style="font-size:0.85rem; color:#666; margin-top:5px; text-transform:uppercase; font-weight:900;">${u.role}</p>
-                <button class="delete-btn" onclick="deleteUser(${u.id})">TERMINATE</button>
-            `;
-            document.getElementById(u.type + '-list').appendChild(div);
-        }
-
-        function deleteUser(id) {
-            let users = JSON.parse(localStorage.getItem('users') || "[]");
-            users = users.filter(u => u.id !== id);
-            localStorage.setItem('users', JSON.stringify(users));
-            document.getElementById(`user-${id}`).remove();
-        }
-
-        function loadUsers() {
-            const users = JSON.parse(localStorage.getItem('users') || "[]");
-            users.forEach(renderUser);
-        }
-
-        // EVENT SYSTEM
-        function updateEvent() {
-            const dateVal = document.getElementById('eventDate').value;
-            if(!dateVal) return;
-            eventEnd = new Date(dateVal).getTime();
-            eventName = document.getElementById('eventText').value || "Incoming Event";
-            
-            localStorage.setItem('eventEnd', eventEnd);
-            localStorage.setItem('eventName', eventName);
-            document.getElementById('event-desc').innerText = eventName;
-        }
-
-        setInterval(() => {
-            if (!eventEnd) return;
-            const d = eventEnd - new Date().getTime();
-            if (d < 0) { document.getElementById('timer').innerHTML = "EVENT ACTIVE"; return; }
-            const days = Math.floor(d / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((d % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const mins = Math.floor((d % (1000 * 60 * 60)) / (1000 * 60));
-            const secs = Math.floor((d % (1000 * 60)) / 1000);
-            document.getElementById('timer').innerHTML = `${days}d ${hours}h ${mins}m ${secs}s`;
-        }, 1000);
-
-        // GALLERY SYSTEM
-        document.getElementById('imgUp').onchange = function(e) {
-            Array.from(e.target.files).forEach(file => {
-                const reader = new FileReader();
-                reader.onload = (ev) => {
-                    const imgs = JSON.parse(localStorage.getItem('gallery') || "[]");
-                    imgs.push(ev.target.result);
-                    localStorage.setItem('gallery', JSON.stringify(imgs));
-                    renderImg(ev.target.result);
-                };
-                reader.readAsDataURL(file);
-            });
-        };
-
-        function renderImg(src) {
-            const img = document.createElement('img');
-            img.src = src;
-            document.getElementById('admin-gallery').appendChild(img);
-        }
-
-        function loadGallery() {
-            const imgs = JSON.parse(localStorage.getItem('gallery') || "[]");
-            imgs.forEach(renderImg);
-        }
-
-        function clearGallery() {
-            localStorage.removeItem('gallery');
-            document.getElementById('admin-gallery').innerHTML = "";
-        }
+        window.onload = startSync;
     </script>
 </body>
 </html>
